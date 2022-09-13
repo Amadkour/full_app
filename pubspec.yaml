@@ -27,7 +27,9 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_slidable: ^2.0.0
   flutter_riverpod: ^1.0.4
-
+  pin_code_fields: ^7.4.0
+  shared_preferences: ^2.0.15
+  get_it:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,10 +52,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/localization/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

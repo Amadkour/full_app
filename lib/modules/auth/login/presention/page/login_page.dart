@@ -6,7 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/widget/button/primary_button.dart';
 import '../../../../../core/widget/text_field/password.dart';
+import '../../../forget/presentation/page/forget_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,54 +31,45 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  Spacer(),
+                  const Spacer(),
+                  ///----------mail text field
                   MailWidget(controller: controller.mailController),
                   const SizedBox(
                     height: 20,
                   ),
+                  ///----------password text field
                   PasswordWidget(
                     controller: controller.passwordController,
                     showPassword: controller.showPassword,
                     onChangeShowPassword: controller.onChangeShowPassword,
                   ),
-                  Spacer(flex: 3,),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 2 / 3,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
-                    child: Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textButtonColor),
-                      ),
-                    ),
+                  const Spacer(flex: 3,),
+                  ///-----------button
+                  PrimaryButton(buttonText: 'Login',
+                    onTap: (){controller.onClickButton(context);},
                   ),
                   Spacer(),
+                  ///-------------forget and sing up
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 1 / 3,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: AppColors.enableColor, borderRadius: BorderRadius.circular(5)),
-                        child: Center(
-                          child: Text(
-                            'Forget',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.textButtonColor),
-                          ),
-                        ),
+                      ///-------------forget
+                      PrimaryButton(
+                        buttonText: 'Forget',
+                        onTap:(){
+                          Navigator.push (
+                            context,
+                            MaterialPageRoute (
+                              builder: (BuildContext context) => const ForgetPage(),
+                            ),
+                          );
+                        },
+                        width: MediaQuery.of(context).size.width/3,
                       ),
                       const SizedBox(width: 10,),
-                      InkWell(
-                        onTap: (){
+                      ///-------------sing up
+                      PrimaryButton(buttonText: 'Sign Up',
+                        onTap:(){
                           Navigator.push (
                             context,
                             MaterialPageRoute (
@@ -84,21 +77,8 @@ class LoginPage extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1 / 3,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: AppColors.enableColor, borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.textButtonColor),
-                            ),
-                          ),
-                        ),
+                        width: MediaQuery.of(context).size.width/3,
+
                       ),
                     ],
                   ),
